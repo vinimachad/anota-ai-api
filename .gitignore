@@ -1,0 +1,6 @@
+/node_modules
+.env
+tmp/*
+dist
+ormconfig.json
+docker-compose.yml
