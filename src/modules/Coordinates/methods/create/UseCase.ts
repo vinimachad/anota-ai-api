@@ -1,5 +1,6 @@
-import { inject, injectable } from "tsyringe";
+import { container, inject, injectable } from "tsyringe";
 import { AppError } from "../../../../errors/AppError";
+import { ViewModel } from "../../../Geolocation/methods/get/viewModel";
 import { ICoordinateRepository } from "../../repository/CoordinatesRepository";
 
 type IData = {
@@ -26,6 +27,10 @@ export class UseCase {
             throw new AppError("É obrigatorio todos os dados da localização")
         }
 
-        return await this.repository.create(data)
+        let coordinate = await this.repository.create(data)
+        let addresViewModel = container.resolve(ViewModel)
+        await addresViewModel.getGeolocation(data.latitude, data.longitude, coordinate.id)
+
+        return coordinate
     }
 }
