@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { change } from "./change.routes";
+import { userRoutes } from "./user.routes";
 
 export const routes = Router()
 
-routes.use('/', change)
+routes.use('/', userRoutes)
