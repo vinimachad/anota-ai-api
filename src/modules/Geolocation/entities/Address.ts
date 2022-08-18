@@ -1,14 +1,13 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm"
-import { Coordinates } from "../../Coordinates/entities/Coordinates"
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import { User } from "../../users/entities/User"
 
 @Entity('adresses')
 export class Address {
     @PrimaryGeneratedColumn('uuid')
     id: string
 
-    @OneToOne(() => Coordinates, coordinate => coordinate.address)
-    @JoinColumn()
-    coordinate: Coordinates
+    @ManyToOne(() => User, user => user.adresses)
+    user: User
 
     @Column()
     street_number: string

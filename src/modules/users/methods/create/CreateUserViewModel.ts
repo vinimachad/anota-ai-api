@@ -8,9 +8,6 @@ type IData = {
     last_name: string
     password: string
     email: string
-    latitude: string
-    longitude: string
-    coordinate_name: string
 }
 
 @injectable()

@@ -6,7 +6,7 @@ export interface IGeolocationRepository {
 }
 
 type IData = {
-    coordinate_id: string
+    user_id: string
     street_number: string
     street: string
     district: string
@@ -26,11 +26,8 @@ export class GeolocationRepository implements IGeolocationRepository {
     }
 
     async create(data: IData): Promise<Address> {
-        console.log("address->", data)
-        const address = this.repository.create({ ...data, coordinate: { id: data.coordinate_id } })
-        console.log("address->2", address)
+        const address = this.repository.create({ ...data, user: { id: data.user_id } })
         await this.repository.save(address)
-        console.log("address->3")
         return address
     }
 }

@@ -1,8 +1,7 @@
-import { container, inject, injectable } from "tsyringe"
-import { geolocationApi } from "../../../../services/GeolocationAPI"
-import { Address } from "../../entities/Address"
-import { AddressComponents } from "../../model/AddressComponents"
-import { UseCase } from "./useCase"
+import { container, injectable } from "tsyringe";
+import { geolocationApi } from "../../../../services/GeolocationAPI";
+import { Address } from "../../entities/Address";
+import { AddressComponents } from "../../model/AddressComponents";
 
 type IGeoResponse = {
     address_components: AddressComponents[],
@@ -15,17 +14,15 @@ export class ViewModel {
     geolocation: IGeoResponse
     address = new Address()
 
-    async getGeolocation(lat: string, long: string, coordinate_id: string) {
+    async getGeolocation(lat: string, long: string) {
         let res = await geolocationApi.get("", {
             params: { latlng: `${lat},${long}`, key: process.env.GEOLOCATION_KEY }
         })
         this.geolocation = res.data.results[0]
-        let address = this.setAddressComponentsToCorrectTypes()
-        let useCase = container.resolve(UseCase)
-        return useCase.execute({ ...address, coordinate_id })
+        return this.setAddressComponentsToCorrectTypes()
     }
 
-    setAddressComponentsToCorrectTypes() {
+    private setAddressComponentsToCorrectTypes() {
         this.geolocation.address_components.forEach(item => {
             if (item.types[0] === "street_number") {
                 this.address.street_number = item.short_name
