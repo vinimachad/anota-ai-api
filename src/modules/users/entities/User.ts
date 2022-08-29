@@ -1,6 +1,6 @@
 import { hashSync } from "bcryptjs";
 import { Column, Entity, BeforeInsert, BeforeUpdate, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Coordinates } from "../../Coordinates/entities/Coordinates";
+import { Address } from "../../Geolocation/entities/Address";
 import { RefreshToken } from "./RefreshToken";
 
 @Entity('users')
@@ -17,8 +17,8 @@ export class User {
     @Column()
     email: string
 
-    @OneToMany(type => Coordinates, coordinates => coordinates.user, { eager: true })
-    coordinates: Coordinates[]
+    @OneToMany(type => Address, address => address.user, { eager: true })
+    adresses: Address[]
     @OneToMany(type => RefreshToken, token => token.user, { eager: true })
     refresh_tokens: RefreshToken[]
 
