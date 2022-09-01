@@ -3,6 +3,7 @@ import { Restaurant } from "../entities/Restaurant"
 
 export interface IRestaurantRepository {
     create(data: RestaurantDTO): Promise<Restaurant>
+    list()
 }
 
 type RestaurantDTO = {
@@ -24,5 +25,9 @@ export class RestaurantRepository implements IRestaurantRepository {
         const restaurant = this.repository.create(data)
         await this.repository.save(restaurant)
         return restaurant
+    }
+
+    async list() {
+        return await this.repository.find()
     }
 }
