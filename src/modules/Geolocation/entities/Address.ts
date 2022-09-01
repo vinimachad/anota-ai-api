@@ -6,9 +6,6 @@ export class Address {
     @PrimaryGeneratedColumn('uuid')
     id: string
 
-    @ManyToOne(() => User, user => user.adresses)
-    user: User
-
     @Column()
     street_number: string
     @Column()
@@ -28,4 +25,9 @@ export class Address {
 
     @CreateDateColumn()
     created_at: Date
+
+    @ManyToOne(() => User, user => user.adresses)
+    user: User
+    @ManyToOne(t => Address, entity => entity.address)
+    address: Address[]
 }

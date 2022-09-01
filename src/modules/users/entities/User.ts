@@ -1,5 +1,6 @@
 import { hashSync } from "bcryptjs";
 import { Column, Entity, BeforeInsert, BeforeUpdate, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Avaliation } from "../../avaliations/entities/Avaliation";
 import { Address } from "../../Geolocation/entities/Address";
 import { RefreshToken } from "./RefreshToken";
 
@@ -21,6 +22,8 @@ export class User {
     adresses: Address[]
     @OneToMany(type => RefreshToken, token => token.user, { eager: true })
     refresh_tokens: RefreshToken[]
+    @OneToMany(t => Avaliation, entity => entity.client, { eager: true })
+    avaliations: Avaliation[]
 
     @BeforeInsert()
     @BeforeUpdate()
