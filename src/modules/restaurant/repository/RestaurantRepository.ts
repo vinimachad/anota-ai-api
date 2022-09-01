@@ -6,7 +6,10 @@ export interface IRestaurantRepository {
 }
 
 type RestaurantDTO = {
-
+    name: string
+    price: number
+    avatar_url: string
+    type: string
 }
 
 export class RestaurantRepository implements IRestaurantRepository {

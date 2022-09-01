@@ -4,9 +4,9 @@ import { ViewModel } from "../viewModel"
 
 export class Controller {
     async handle(req: Request, res: Response) {
-        const { name } = req.body
+        const { name, price, avatar_url, type } = req.body
         const viewModel = container.resolve(ViewModel)
-        const restaurant = await viewModel.validateFields({ name })
+        const restaurant = await viewModel.validateFields({ name, price, avatar_url, type })
         return res.json(restaurant)
     }
 }   

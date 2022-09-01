@@ -4,6 +4,9 @@ import { UseCase } from "../useCase"
 
 type Request = {
     name: string
+    price: number
+    avatar_url: string
+    type: string
 }
 
 @injectable()

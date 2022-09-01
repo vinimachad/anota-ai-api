@@ -10,7 +10,8 @@ type IRequest = {
     country: string
     postal_code: string
     formatted_address: string
-    user_id: string
+    user_id?: string
+    restaurant_id?: string
 }
 
 @injectable()

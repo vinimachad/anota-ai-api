@@ -10,7 +10,8 @@ type IGeoRequest = {
     country: string
     postal_code: string
     formatted_address: string
-    user_id: string
+    user_id?: string
+    restaurant_id?: string
 }
 
 @injectable()
@@ -18,6 +19,13 @@ export class ViewModel {
 
     async createGeolocation(request: IGeoRequest) {
         let useCase = container.resolve(UseCase)
-        return useCase.execute(request)
+
+        if (!request.user_id && request.restaurant_id) {
+            return useCase.execute({ ...request, user_id: null })
+        }
+
+        if (!request.restaurant_id && request.user_id) {
+            return useCase.execute({ ...request, restaurant_id: null })
+        }
     }
 }

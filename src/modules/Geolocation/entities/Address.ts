@@ -1,4 +1,5 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import { Restaurant } from "../../restaurant/entities/Restaurant"
 import { User } from "../../users/entities/User"
 
 @Entity('adresses')
@@ -27,7 +28,7 @@ export class Address {
     created_at: Date
 
     @ManyToOne(() => User, user => user.adresses)
-    user: User
-    @ManyToOne(t => Address, entity => entity.address)
-    address: Address[]
+    user?: User
+    @ManyToOne(() => Restaurant, entity => entity.adresses)
+    restaurant?: Restaurant
 }
