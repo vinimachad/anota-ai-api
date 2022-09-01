@@ -4,6 +4,7 @@ import { Food } from "../entities/Food"
 
 export interface IFoodRepository {
     create(data: FoodDTO)
+    list(restaurant_id: string)
 }
 
 export type FoodDTO = {
@@ -27,5 +28,9 @@ export class FoodRepository implements IFoodRepository {
         const food = this.repository.create({ ...data, restaurant: { id: data.restaurant_id } })
         await this.repository.save(food)
         return food
+    }
+
+    async list(restaurant_id: string) {
+        return await this.repository.find({ where: { restaurant: { id: restaurant_id } } })
     }
 }

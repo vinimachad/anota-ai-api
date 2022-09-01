@@ -8,9 +8,13 @@ export class Food {
     id: string
     @Column()
     name: string
+    @Column()
     type: string
+    @Column()
     price: number
+    @Column()
     preview_url: string
+    @Column()
     description: string
 
     @ManyToOne(type => Restaurant, entity => entity.foods)
