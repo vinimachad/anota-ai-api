@@ -17,11 +17,11 @@ export class Restaurant {
     @Column()
     price: number
 
-    @OneToMany(type => Avaliation, avaliation => avaliation.restaurant, { eager: true })
+    @OneToMany(type => Avaliation, avaliation => avaliation.restaurant)
     avaliations?: Avaliation[]
-    @OneToMany(type => Address, address => address.restaurant, { eager: true })
+    @OneToMany(type => Address, address => address.restaurant)
     adresses?: Address[]
-    @OneToMany(type => Food, entity => entity.restaurant, { eager: true })
+    @OneToMany(type => Food, entity => entity.restaurant)
     foods?: Food[]
 
     @CreateDateColumn()
