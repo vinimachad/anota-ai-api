@@ -10,7 +10,7 @@ export class Food {
     name: string
     @Column()
     type: string
-    @Column()
+    @Column({ type: 'decimal', precision: 5, scale: 2, default: 0 })
     price: number
     @Column()
     preview_url: string
