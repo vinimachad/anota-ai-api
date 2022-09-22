@@ -16,6 +16,8 @@ export class Restaurant {
     type: string
     @Column()
     price: number
+    @Column({ nullable: true })
+    evaluation: number
 
     @OneToMany(type => Avaliation, avaliation => avaliation.restaurant)
     avaliations?: Avaliation[]

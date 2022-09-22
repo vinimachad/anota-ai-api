@@ -1,9 +1,10 @@
-import { getRepository, Repository } from "typeorm"
+import { getRepository, MoreThanOrEqual, Repository } from "typeorm"
 import { Restaurant } from "../entities/Restaurant"
 
 export interface IRestaurantRepository {
     create(data: RestaurantDTO): Promise<Restaurant>
     list()
+    findByMoreEvaluationed()
 }
 
 type RestaurantDTO = {
@@ -29,5 +30,9 @@ export class RestaurantRepository implements IRestaurantRepository {
 
     async list() {
         return await this.repository.find()
+    }
+
+    async findByMoreEvaluationed() {
+        return await this.repository.find({ evaluation: MoreThanOrEqual(3) })
     }
 }
