@@ -3,6 +3,7 @@ import { Address } from "../entities/Address"
 
 export interface IGeolocationRepository {
     create(data: IData): Promise<Address>
+    findNearbyAdresses()
 }
 
 type IData = {
@@ -16,6 +17,7 @@ type IData = {
     country: string
     postal_code: string
     formatted_address: string
+    coordinate: { lat: string, long: string }
 }
 
 export class GeolocationRepository implements IGeolocationRepository {
@@ -31,10 +33,16 @@ export class GeolocationRepository implements IGeolocationRepository {
             {
                 ...data,
                 user: { id: data.user_id },
-                restaurant: { id: data.restaurant_id }
+                restaurant: { id: data.restaurant_id },
+                lat: data.coordinate.lat,
+                long: data.coordinate.long
             }
         )
         await this.repository.save(address)
         return address
+    }
+
+    async findNearbyAdresses() {
+        return await this.repository.find()
     }
 }

@@ -19,7 +19,10 @@ export class ViewModel {
             params: { latlng: `${lat},${long}`, key: process.env.GEOLOCATION_KEY }
         })
         this.geolocation = res.data.results[0]
+        this.address.lat = lat
+        this.address.long = long
         return this.setAddressComponentsToCorrectTypes()
+
     }
 
     private setAddressComponentsToCorrectTypes() {

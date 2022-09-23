@@ -5,6 +5,7 @@ export interface IRestaurantRepository {
     create(data: RestaurantDTO): Promise<Restaurant>
     list()
     findByMoreEvaluationed()
+    findByIds(ids: string[])
 }
 
 type RestaurantDTO = {
@@ -34,5 +35,9 @@ export class RestaurantRepository implements IRestaurantRepository {
 
     async findByMoreEvaluationed() {
         return await this.repository.find({ evaluation: MoreThanOrEqual(3) })
+    }
+
+    async findByIds(ids: String[]) {
+        return await this.repository.findByIds(ids)
     }
 }

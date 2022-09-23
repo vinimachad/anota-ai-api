@@ -12,6 +12,7 @@ type IGeoRequest = {
     formatted_address: string
     user_id?: string
     restaurant_id?: string
+    coordinate: { lat: string, long: string }
 }
 
 @injectable()
