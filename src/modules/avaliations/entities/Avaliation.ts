@@ -7,8 +7,10 @@ export class Avaliation {
 
     @PrimaryGeneratedColumn('uuid')
     id: string
-    @Column()
+    @Column({ nullable: true })
     points: number
+    @Column({ nullable: true })
+    description: string
 
     @ManyToOne(t => User, user => user.avaliations)
     client: User
