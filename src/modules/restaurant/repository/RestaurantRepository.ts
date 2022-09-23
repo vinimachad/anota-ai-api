@@ -6,6 +6,8 @@ export interface IRestaurantRepository {
     list()
     findByMoreEvaluationed()
     findByIds(ids: string[])
+    findById(id: string)
+    updateEvaluation(restaurant: Restaurant)
 }
 
 type RestaurantDTO = {
@@ -29,6 +31,11 @@ export class RestaurantRepository implements IRestaurantRepository {
         return restaurant
     }
 
+    async updateEvaluation(restaurant: Restaurant) {
+        await this.repository.save(restaurant)
+        return restaurant
+    }
+
     async list() {
         return await this.repository.find()
     }
@@ -39,5 +46,9 @@ export class RestaurantRepository implements IRestaurantRepository {
 
     async findByIds(ids: String[]) {
         return await this.repository.findByIds(ids)
+    }
+
+    async findById(id: string) {
+        return await this.repository.findOne(id)
     }
 }

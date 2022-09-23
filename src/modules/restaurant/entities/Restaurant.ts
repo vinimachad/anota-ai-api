@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { Avaliation } from "../../avaliations/entities/Avaliation"
 import { Food } from "../../foods/entities/Food"
 import { Address } from "../../Geolocation/entities/Address"
@@ -16,10 +16,10 @@ export class Restaurant {
     type: string
     @Column()
     price: number
-    @Column({ nullable: true })
+    @Column({ nullable: true, default: 0, type: 'decimal' })
     evaluation: number
 
-    @OneToMany(type => Avaliation, avaliation => avaliation.restaurant)
+    @OneToMany(type => Avaliation, avaliation => avaliation.restaurant, { eager: true })
     avaliations?: Avaliation[]
     @OneToMany(type => Address, address => address.restaurant)
     adresses?: Address[]
@@ -28,4 +28,17 @@ export class Restaurant {
 
     @CreateDateColumn()
     created_at: Date
+
+    updateEvaluation() {
+        let points = this.avaliations.map(evaluations => {
+            return evaluations.points
+        })
+
+        var sumValue = 0
+        points.forEach(point => {
+            sumValue += point
+        })
+
+        this.evaluation = sumValue / points.length
+    }
 }
