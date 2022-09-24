@@ -13,6 +13,8 @@ export class UseCase {
     }
 
     async execute() {
-        return await this.repository.list()
+        let restaurants = await this.repository.list()
+        console.log(restaurants);
+        return restaurants
     }
 }

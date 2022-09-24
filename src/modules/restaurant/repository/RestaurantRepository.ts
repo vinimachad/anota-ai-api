@@ -41,7 +41,7 @@ export class RestaurantRepository implements IRestaurantRepository {
     }
 
     async findByMoreEvaluationed() {
-        return await this.repository.find({ evaluation: MoreThanOrEqual(3) })
+        return await this.repository.find({ evaluation: MoreThanOrEqual(4) })
     }
 
     async findByIds(ids: String[]) {

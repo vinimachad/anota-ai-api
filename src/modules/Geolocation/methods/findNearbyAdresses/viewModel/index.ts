@@ -3,7 +3,7 @@ import { AppError } from "../../../../../errors/AppError"
 import findDistance from "../../../../../helpers/findDistance"
 import { Address } from "../../../entities/Address"
 import { UseCase } from "../useCase"
-import { UseCase as FindRestaurantByIdUseCase } from "../../../../restaurant/method/findById/useCase"
+import { UseCase as FindRestaurantByIdsUseCase } from "../../../../restaurant/method/findByIds/useCase"
 
 type Request = {
     max_distance: string
@@ -15,7 +15,7 @@ type Request = {
 export class ViewModel {
 
     useCase = container.resolve(UseCase)
-    findRestaurantByIdUseCase = container.resolve(FindRestaurantByIdUseCase)
+    findRestaurantByIdsUseCase = container.resolve(FindRestaurantByIdsUseCase)
 
     async nearbyRestaurantValidate(req: Request) {
         let adresses = await this.getAdresses()
@@ -59,7 +59,7 @@ export class ViewModel {
 
     async findNearbyRestaurants(req: Request) {
         let restaurantIds = await this.nearbyRestaurantValidate(req)
-        return await this.findRestaurantByIdUseCase.execute(restaurantIds)
+        return await this.findRestaurantByIdsUseCase.execute(restaurantIds)
     }
 
     async getAdresses(): Promise<Address[]> {

@@ -1,4 +1,5 @@
 import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import { DecimalTransformer } from "../../../helpers/DecimalTransformer"
 import { Avaliation } from "../../avaliations/entities/Avaliation"
 import { Food } from "../../foods/entities/Food"
 import { Address } from "../../Geolocation/entities/Address"
@@ -16,7 +17,7 @@ export class Restaurant {
     type: string
     @Column()
     price: number
-    @Column({ nullable: true, default: 0, type: 'decimal' })
+    @Column({ type: 'decimal', precision: 5, scale: 2, default: 0, transformer: new DecimalTransformer() })
     evaluation: number
 
     @OneToMany(type => Avaliation, avaliation => avaliation.restaurant, { eager: true })
