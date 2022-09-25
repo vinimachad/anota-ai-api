@@ -12,10 +12,10 @@ module.exports = {
     cli: {
         migrationsDir: "./src/database/migrations"
     },
-    // ssl: process.env.DB_HAS_SSL,
-    // extra: {
-    //     ssl: {
-    //         rejectUnauthorized: false
-    //     }
-    // }
+    ssl: process.env.DB_HAS_SSL,
+    extra: {
+        ssl: {
+            rejectUnauthorized: false
+        }
+    }
 }
