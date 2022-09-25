@@ -3,7 +3,8 @@ import { Address } from "../entities/Address"
 
 export interface IGeolocationRepository {
     create(data: IData): Promise<Address>
-    findNearbyAdresses()
+    listAddresses()
+    findByUserId(userId: string)
 }
 
 type IData = {
@@ -42,7 +43,11 @@ export class GeolocationRepository implements IGeolocationRepository {
         return address
     }
 
-    async findNearbyAdresses() {
+    async listAddresses() {
         return await this.repository.find()
+    }
+
+    async findByUserId(userId: string) {
+        return await this.repository.find({ where: { userId } })
     }
 }
