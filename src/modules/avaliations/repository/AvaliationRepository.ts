@@ -3,6 +3,7 @@ import { Avaliation } from "../entities/Avaliation"
 
 export interface IAvaliationRepository {
     create(data: AvaliationDTO)
+    findByRestaurantId(id: string)
 }
 
 export type AvaliationDTO = {
@@ -30,5 +31,14 @@ export class AvaliationRepository implements IAvaliationRepository {
         )
         await this.repository.save(avaliation)
         return avaliation
+    }
+
+    async findByRestaurantId(id: string) {
+        return await this.repository.find(
+            {
+                relations: ['client'],
+                where: { restaurant: { id } }
+            }
+        )
     }
 }

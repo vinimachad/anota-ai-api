@@ -11,6 +11,8 @@ export class Avaliation {
     points: number
     @Column({ nullable: true })
     description: string
+    @Column({ default: '' })
+    title: string
 
     @ManyToOne(t => User, user => user.avaliations)
     client: User

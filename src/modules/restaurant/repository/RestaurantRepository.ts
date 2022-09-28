@@ -69,7 +69,7 @@ export class RestaurantRepository implements IRestaurantRepository {
 
     async listDetailsByRestaurantId(id: string) {
         return await this.repository.findOne(id, {
-            select: ['name']
+            select: ['details']
         })
     }
 }
