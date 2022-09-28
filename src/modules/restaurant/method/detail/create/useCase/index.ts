@@ -13,7 +13,6 @@ export class UseCase {
     }
 
     async execute(data: DetailDTO) {
-        let restaurant = await this.repository.findById(data.restaurant_id)
-        return await this.repository.updateDetails(restaurant)
+        return await this.repository.updateDetails(data)
     }
 }

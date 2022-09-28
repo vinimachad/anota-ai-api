@@ -1,14 +1,14 @@
 import { container, inject, injectable } from "tsyringe";
 import UpdateEvaluationUseCase from "../../../../restaurant/method/updateEvaluation";
-import { UseCase as FindRestaurantByIdUseCase } from '../../../../restaurant/method/restaurant/findById/useCase'
 import { AvaliationDTO, IAvaliationRepository } from "../../../repository/AvaliationRepository";
+import FindAvaliationsByRestaurantIdUseCase from "../../findByRestaurantId/findByRestaurantIdUseCase";
 
 @injectable()
 export class UseCase {
 
     private repository: IAvaliationRepository
     updateEvaluationUseCase = container.resolve(UpdateEvaluationUseCase)
-    findRestaurantByIdUseCase = container.resolve(FindRestaurantByIdUseCase)
+    findAvaliationByRestaurantId = container.resolve(FindAvaliationsByRestaurantIdUseCase)
 
     constructor(
         @inject('AvaliationRepository')
@@ -18,9 +18,9 @@ export class UseCase {
 
     async execute(req: AvaliationDTO) {
         let evaluation = await this.repository.create(req)
-        let restaurant = await this.findRestaurantByIdUseCase.execute(req.restaurant_id)
-        restaurant.updateEvaluation()
-        await this.updateEvaluationUseCase.execute(restaurant)
+        let avaliations = await this.findAvaliationByRestaurantId.execute(req.restaurant_id)
+
+        await this.updateEvaluationUseCase.execute(avaliations, req.restaurant_id)
         return evaluation
     }
 }

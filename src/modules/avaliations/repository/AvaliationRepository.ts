@@ -11,6 +11,7 @@ export type AvaliationDTO = {
     restaurant_id: string
     description?: string
     points: number
+    title: string
 }
 
 export class AvaliationRepository implements IAvaliationRepository {

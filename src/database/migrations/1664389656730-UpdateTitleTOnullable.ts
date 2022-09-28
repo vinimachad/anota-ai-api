@@ -1,10 +1,10 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class CreateTitleOfAvaliation1664381571881 implements MigrationInterface {
-    name = 'CreateTitleOfAvaliation1664381571881'
+export class UpdateTitleTOnullable1664389656730 implements MigrationInterface {
+    name = 'UpdateTitleTOnullable1664389656730'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`ALTER TABLE "avaliation" ADD "title" character varying NOT NULL DEFAULT ''`);
+        await queryRunner.query(`ALTER TABLE "avaliation" ADD "title" character varying`);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

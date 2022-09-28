@@ -42,17 +42,4 @@ export class Restaurant {
 
     @CreateDateColumn()
     created_at: Date
-
-    updateEvaluation() {
-        let points = this.avaliations.map(evaluations => {
-            return evaluations.points
-        })
-
-        var sumValue = 0
-        points.forEach(point => {
-            sumValue += point
-        })
-
-        this.evaluation = sumValue / points.length
-    }
 }

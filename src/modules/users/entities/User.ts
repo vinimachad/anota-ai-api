@@ -18,11 +18,11 @@ export class User {
     @Column()
     email: string
 
-    @OneToMany(type => Address, address => address.user, { eager: true })
+    @OneToMany(type => Address, address => address.user)
     adresses: Address[]
-    @OneToMany(type => RefreshToken, token => token.user, { eager: true })
+    @OneToMany(type => RefreshToken, token => token.user)
     refresh_tokens: RefreshToken[]
-    @OneToMany(t => Avaliation, entity => entity.client, { eager: true })
+    @OneToMany(t => Avaliation, entity => entity.client)
     avaliations: Avaliation[]
 
     @BeforeInsert()

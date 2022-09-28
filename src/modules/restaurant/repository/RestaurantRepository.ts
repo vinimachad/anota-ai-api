@@ -6,9 +6,9 @@ export interface IRestaurantRepository {
     list()
     findByMoreEvaluationed()
     findByIds(ids: string[])
-    findById(id: string)
-    updateEvaluation(restaurant: Restaurant)
-    updateDetails(restaurant: Restaurant)
+    findById(id: string, relations?: string[])
+    updateEvaluation(restaurant_id: string, evaluation: number)
+    updateDetails(data: DetailDTO)
     listDetailsByRestaurantId(id: string)
 }
 
@@ -38,9 +38,13 @@ export class RestaurantRepository implements IRestaurantRepository {
         return restaurant
     }
 
-    async updateEvaluation(restaurant: Restaurant) {
-        await this.repository.save(restaurant)
-        return restaurant
+    async updateEvaluation(restaurant_id: string, evaluation: number) {
+        return await this.repository
+            .createQueryBuilder()
+            .update(Restaurant)
+            .set({ evaluation: evaluation })
+            .where("id = :id", { id: restaurant_id })
+            .execute()
     }
 
     async list() {
@@ -55,16 +59,19 @@ export class RestaurantRepository implements IRestaurantRepository {
         return await this.repository.findByIds(ids, { relations: ['avaliations'] })
     }
 
-    async findById(id: string) {
-        return await this.repository.findOne(id)
+    async findById(id: string, relations?: string[]) {
+        return await this.repository.findOne(id, {
+            relations
+        })
     }
 
-    async updateDetails(restaurant: Restaurant) {
-        return await this.repository
-            .update(
-                { details: restaurant.details },
-                restaurant
-            )
+    async updateDetails(data: DetailDTO) {
+        await this.repository
+            .createQueryBuilder()
+            .update(Restaurant)
+            .set({ details: data.results })
+            .where("id = :id", { id: data.restaurant_id })
+            .execute()
     }
 
     async listDetailsByRestaurantId(id: string) {
