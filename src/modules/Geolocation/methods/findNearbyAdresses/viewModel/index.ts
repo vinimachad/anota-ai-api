@@ -3,7 +3,7 @@ import { AppError } from "../../../../../errors/AppError"
 import findDistance from "../../../../../helpers/findDistance"
 import { Address } from "../../../entities/Address"
 import { UseCase } from "../useCase"
-import { UseCase as FindRestaurantByIdsUseCase } from "../../../../restaurant/method/findByIds/useCase"
+import { UseCase as FindRestaurantByIdsUseCase } from "../../../../restaurant/method/restaurant/findByIds/useCase"
 
 type Request = {
     max_distance: string

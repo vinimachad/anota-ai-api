@@ -1,12 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IRestaurantRepository } from "../../../repository/RestaurantRepository";
-
-type Request = {
-    name: string
-    price: number
-    avatar_url: string
-    type: string
-}
+import { IRestaurantRepository } from "../../../../repository/RestaurantRepository";
 
 @injectable()
 export class UseCase {
@@ -19,7 +12,7 @@ export class UseCase {
         this.repository = repository
     }
 
-    async execute(req: Request) {
-        return await this.repository.create(req)
+    async execute(ids: string[]) {
+        return await this.repository.findByIds(ids)
     }
 }

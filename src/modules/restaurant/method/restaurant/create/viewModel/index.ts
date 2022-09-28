@@ -1,5 +1,5 @@
 import { container, injectable } from "tsyringe"
-import { AppError } from "../../../../../errors/AppError"
+import { AppError } from "../../../../../../errors/AppError"
 import { UseCase } from "../useCase"
 
 type Request = {

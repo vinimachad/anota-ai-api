@@ -1,0 +1,33 @@
+{
+    "restaurant_id": "ce932555-5deb-482d-a067-78a154a795b8",
+    "results": [
+        {
+            "title": "Endereço",
+            "value": "Av. Afonso Pena, 6044 - Cidade Jardim"
+        },
+        {
+            "title": "Preço",
+            "value": "Caro"
+        },
+        {
+            "title": "Estacionamento",
+            "value": "Não"
+        },
+        {
+            "title": "Happy Hour",
+            "value": "Não"
+        },
+        {
+            "title": "Espaço Kids",
+            "value": "Não"
+        },
+        {
+            "title": "Couvert",
+            "value": "Sim"
+        },
+        {
+            "title": "Local coberto",
+            "value": "Sim"
+        }
+    ]
+}

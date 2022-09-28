@@ -1,5 +1,5 @@
 import { getRepository, MoreThanOrEqual, Repository } from "typeorm"
-import { Restaurant } from "../entities/Restaurant"
+import { Detail, Restaurant } from "../entities/Restaurant"
 
 export interface IRestaurantRepository {
     create(data: RestaurantDTO): Promise<Restaurant>
@@ -8,6 +8,8 @@ export interface IRestaurantRepository {
     findByIds(ids: string[])
     findById(id: string)
     updateEvaluation(restaurant: Restaurant)
+    updateDetails(restaurant: Restaurant)
+    listDetailsByRestaurantId(id: string)
 }
 
 type RestaurantDTO = {
@@ -15,6 +17,11 @@ type RestaurantDTO = {
     price: number
     avatar_url: string
     type: string
+}
+
+export type DetailDTO = {
+    restaurant_id: string
+    results: Detail[]
 }
 
 export class RestaurantRepository implements IRestaurantRepository {
@@ -41,14 +48,28 @@ export class RestaurantRepository implements IRestaurantRepository {
     }
 
     async findByMoreEvaluationed() {
-        return await this.repository.find({ evaluation: MoreThanOrEqual(4) })
+        return await this.repository.find({ evaluation: MoreThanOrEqual(3) })
     }
 
     async findByIds(ids: String[]) {
-        return await this.repository.findByIds(ids)
+        return await this.repository.findByIds(ids, { relations: ['avaliations'] })
     }
 
     async findById(id: string) {
         return await this.repository.findOne(id)
+    }
+
+    async updateDetails(restaurant: Restaurant) {
+        return await this.repository
+            .update(
+                { details: restaurant.details },
+                restaurant
+            )
+    }
+
+    async listDetailsByRestaurantId(id: string) {
+        return await this.repository.findOne(id, {
+            select: ['name']
+        })
     }
 }

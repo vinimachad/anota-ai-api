@@ -1,6 +1,6 @@
 import { container, inject, injectable } from "tsyringe";
 import UpdateEvaluationUseCase from "../../../../restaurant/method/updateEvaluation";
-import { UseCase as FindRestaurantByIdUseCase } from '../../../../restaurant/method/findById/useCase'
+import { UseCase as FindRestaurantByIdUseCase } from '../../../../restaurant/method/restaurant/findById/useCase'
 import { AvaliationDTO, IAvaliationRepository } from "../../../repository/AvaliationRepository";
 
 @injectable()

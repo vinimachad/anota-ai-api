@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IRestaurantRepository } from "../../../repository/RestaurantRepository";
+import { IRestaurantRepository } from "../../../../repository/RestaurantRepository";
 
 @injectable()
 export class UseCase {
@@ -13,6 +13,6 @@ export class UseCase {
     }
 
     async execute() {
-        return await this.repository.list()
+        return await this.repository.findByMoreEvaluationed()
     }
 }
