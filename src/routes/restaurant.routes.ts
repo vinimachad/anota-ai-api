@@ -10,6 +10,7 @@ import findByMoreEvaluationedHandle from "../modules/restaurant/method/restauran
 import listRestaurantsHandle from "../modules/restaurant/method/restaurant/list/controller"
 import createRestaurantKindHandle from "../modules/restaurantsKind/methods/create/controller"
 import listRestaurantKindHandle from "../modules/restaurantsKind/methods/get/controller"
+import createMenuHandle from "../modules/menu/methods/createMenu/CreateMenuController"
 
 export const restaurantRoutes = Router()
 
@@ -31,3 +32,5 @@ restaurantRoutes.get('/bestRated', ensureAuthenticated, findByMoreEvaluationedHa
 
 restaurantRoutes.get('/details', ensureAuthenticated, listDetailsByRestaurantId)
 restaurantRoutes.put('/details', ensureAuthenticated, createDetailHandle)
+
+restaurantRoutes.post('/menu', ensureAuthenticated, createMenuHandle)

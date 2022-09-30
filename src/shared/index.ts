@@ -6,6 +6,7 @@ import { IRestaurantRepository, RestaurantRepository } from "../modules/restaura
 import { FoodRepository, IFoodRepository } from "../modules/foods/repository/FoodRepository";
 import { IRestaurantKindRepository, RestaurantKindRepository } from "../modules/restaurantsKind/repository/RestaurantKindRepository";
 import { AvaliationRepository, IAvaliationRepository } from "../modules/avaliations/repository/AvaliationRepository";
+import { IMenuRepository, MenuRepository } from "../modules/menu/repositories/MenuRepository";
 
 container.registerSingleton<IUserRepository>("UserRepository", UserRepository)
 container.registerSingleton<IRefreshTokenRepository>("RefreshTokenRepository", RefreshTokenRepository)
@@ -14,3 +15,4 @@ container.registerSingleton<IRestaurantRepository>("RestaurantRepository", Resta
 container.registerSingleton<IFoodRepository>("FoodRepository", FoodRepository)
 container.registerSingleton<IRestaurantKindRepository>("RestaurantKindRepository", RestaurantKindRepository)
 container.registerSingleton<IAvaliationRepository>("AvaliationRepository", AvaliationRepository)
+container.registerSingleton<IMenuRepository>("MenuRepository", MenuRepository)

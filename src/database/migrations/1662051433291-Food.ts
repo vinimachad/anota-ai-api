@@ -8,7 +8,7 @@ export class Food1662051433291 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE "restaurant" ALTER COLUMN "avatar_url" SET NOT NULL`);
         await queryRunner.query(`ALTER TABLE "restaurant" ALTER COLUMN "type" SET NOT NULL`);
         await queryRunner.query(`ALTER TABLE "restaurant" ALTER COLUMN "price" SET NOT NULL`);
-        await queryRunner.query(`ALTER TABLE "foods" ADD CONSTRAINT "FK_0250659f9284b4ce80744075112" FOREIGN KEY ("restaurantId") REFERENCES "restaurant"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "foods" ADD CONSTRAINT "FK_0250659f9284b4ce80744075112" FOREIGN KEY ("restaurantId") REFERENCES "restaurant"("id") ON DELETE CASCADE ON UPDATE CASCADE`);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

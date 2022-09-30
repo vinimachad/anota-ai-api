@@ -10,7 +10,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
     "migration-gen": "ts-node-dev ./node_modules/typeorm/cli migration:generate -- -n",
+    "migration-create": "ts-node-dev ./node_modules/typeorm/cli migration:create -n",
     "migration-run": "ts-node-dev ./node_modules/typeorm/cli migration:run",
+    "migration-revert": "ts-node-dev ./node_modules/typeorm/cli migration:revert",
     "run-migration": "node_modules/.bin/typeorm migration:run"
   },
   "dependencies": {

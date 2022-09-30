@@ -1,8 +1,8 @@
 import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
 import { DecimalTransformer } from "../../../helpers/DecimalTransformer"
 import { Avaliation } from "../../avaliations/entities/Avaliation"
-import { Food } from "../../foods/entities/Food"
 import { Address } from "../../Geolocation/entities/Address"
+import { Menu } from "../../menu/entities/Menu"
 
 export type Detail = {
     title: string
@@ -37,8 +37,9 @@ export class Restaurant {
     @OneToMany(type => Address, address => address.restaurant)
     adresses?: Address[]
 
-    @OneToMany(type => Food, entity => entity.restaurant)
-    foods?: Food[]
+    @OneToOne(() => Menu, entity => entity.restaurant)
+    @JoinColumn()
+    menu: Menu
 
     @CreateDateColumn()
     created_at: Date
