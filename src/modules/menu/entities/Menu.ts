@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Food } from "../../foods/entities/Food";
 import { Restaurant } from "../../restaurant/entities/Restaurant";
 
@@ -9,6 +9,7 @@ export class Menu {
     id: string
 
     @OneToOne(() => Restaurant, entity => entity.menu)
+    @JoinColumn()
     restaurant: Restaurant
 
     @OneToMany(() => Food, entity => entity.menu, { onDelete: 'CASCADE' })

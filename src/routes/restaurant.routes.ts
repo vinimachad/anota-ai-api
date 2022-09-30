@@ -11,6 +11,7 @@ import listRestaurantsHandle from "../modules/restaurant/method/restaurant/list/
 import createRestaurantKindHandle from "../modules/restaurantsKind/methods/create/controller"
 import listRestaurantKindHandle from "../modules/restaurantsKind/methods/get/controller"
 import createMenuHandle from "../modules/menu/methods/createMenu/CreateMenuController"
+import listFoodsByRestaurantIdHandle from "../modules/menu/methods/listFoodsByRestaurantId/ListFoodsByRestaurantIdController"
 
 export const restaurantRoutes = Router()
 
@@ -34,3 +35,4 @@ restaurantRoutes.get('/details', ensureAuthenticated, listDetailsByRestaurantId)
 restaurantRoutes.put('/details', ensureAuthenticated, createDetailHandle)
 
 restaurantRoutes.post('/menu', ensureAuthenticated, createMenuHandle)
+restaurantRoutes.get('/menu', ensureAuthenticated, listFoodsByRestaurantIdHandle)

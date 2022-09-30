@@ -3,6 +3,7 @@ import { Menu } from "../entities/Menu"
 
 export interface IMenuRepository {
     create(restaurant_id: string)
+    listFoodsByRestaurantId(restaurant_id: string)
 }
 
 export class MenuRepository implements IMenuRepository {
@@ -19,5 +20,12 @@ export class MenuRepository implements IMenuRepository {
         })
         await this.repository.save(entitie)
         return entitie
+    }
+
+    async listFoodsByRestaurantId(restaurant_id: string) {
+        return await this.repository.find({
+            relations: ['foods'],
+            where: { restaurant: { id: restaurant_id } }
+        })
     }
 }

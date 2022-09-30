@@ -38,7 +38,6 @@ export class Restaurant {
     adresses?: Address[]
 
     @OneToOne(() => Menu, entity => entity.restaurant)
-    @JoinColumn()
     menu: Menu
 
     @CreateDateColumn()

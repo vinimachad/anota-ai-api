@@ -8,7 +8,7 @@ export class ViewModel {
 
     async createFood(req: FoodDTO) {
 
-        if (req.description == "" || req.name == "" || req.preview_url == "" || !req.price || req.restaurant_id == "" || req.type == "") {
+        if (req.description == "" || req.name == "" || req.preview_url == "" || !req.price || req.menu_id == "" || req.type == "") {
             throw new AppError("Todos os campos devem ser preenchidos", 400)
         }
 

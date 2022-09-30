@@ -13,7 +13,7 @@ export type FoodDTO = {
     price: number
     preview_url: string
     description: string
-    restaurant_id: string
+    menu_id: string
 }
 
 export class FoodRepository implements IFoodRepository {
@@ -25,12 +25,14 @@ export class FoodRepository implements IFoodRepository {
     }
 
     async create(data: FoodDTO) {
-        const food = this.repository.create({ ...data, restaurant: { id: data.restaurant_id } })
+        console.log(data);
+
+        const food = this.repository.create({ ...data, menu: { id: data.menu_id } })
         await this.repository.save(food)
         return food
     }
 
-    async list(restaurant_id: string) {
-        return await this.repository.find({ where: { restaurant: { id: restaurant_id } } })
+    async list(menu_id: string) {
+        return await this.repository.find({ where: { menu: { id: menu_id } } })
     }
 }
