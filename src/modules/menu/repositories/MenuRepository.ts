@@ -23,7 +23,7 @@ export class MenuRepository implements IMenuRepository {
     }
 
     async listFoodsByRestaurantId(restaurant_id: string) {
-        return await this.repository.find({
+        return await this.repository.findOne({
             relations: ['foods'],
             where: { restaurant: { id: restaurant_id } }
         })
