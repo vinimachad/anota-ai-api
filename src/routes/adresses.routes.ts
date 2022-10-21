@@ -3,6 +3,7 @@ import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 import userHasAddressHandle from "../modules/Geolocation/methods/userHasAddress/controller";
 import { Controller as AddressController } from "../modules/Geolocation/methods/get/controller"
 import { Controller as CreateAddressController } from "../modules/Geolocation/methods/create/controller";
+import findAddressByRestaurantIdHandle from "../modules/Geolocation/methods/findById/findByRestaurantIdController";
 
 export const adressesRoutes = Router()
 const getAddressController = new AddressController()
@@ -11,3 +12,4 @@ const createAddressController = new CreateAddressController()
 adressesRoutes.get("/user-addresses", ensureAuthenticated, userHasAddressHandle)
 adressesRoutes.get('/', ensureAuthenticated, getAddressController.handle)
 adressesRoutes.post('/', ensureAuthenticated, createAddressController.handle)
+adressesRoutes.get('/restaurant', ensureAuthenticated, findAddressByRestaurantIdHandle)

@@ -5,6 +5,7 @@ export interface IGeolocationRepository {
     create(data: IData): Promise<Address>
     listAddresses()
     findByUserId(userId: string)
+    findByRestaurantId(restaurantId: string)
 }
 
 type IData = {
@@ -49,5 +50,9 @@ export class GeolocationRepository implements IGeolocationRepository {
 
     async findByUserId(userId: string) {
         return await this.repository.find({ where: { userId } })
+    }
+
+    async findByRestaurantId(restaurantId: string) {
+        return await this.repository.find({ where: { restaurantId } })
     }
 }
